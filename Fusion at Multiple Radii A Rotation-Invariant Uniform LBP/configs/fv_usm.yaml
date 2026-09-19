@@ -1,0 +1,43 @@
+# FV-USM -- 123 subjects x 4 fingers x 6 captures x 2 sessions = 5,904 ROIs.
+# The dataset ships pre-extracted ROIs of 300 x 100 px, so no ROI stage is needed.
+#
+# Point `data_root` at the directory that contains 1st_session/ and 2nd_session/.
+
+data_root: "data/FV-USM/Published_database_FV-USM_Dec2013"
+
+# FV-USM is the only two-session dataset. `session-sensitive` treats images of
+# the same subject from different sessions as impostors; `session-independent`
+# accepts any same-subject pair. Override per run with --evaluation.
+evaluation: session-sensitive
+
+# (height, width) the ROI is resized to, per feature family. The notebook
+# families did not agree on the orientation for FV-USM, so each is listed:
+#   raw          raw-pixel PCA / 2DPCA / (2D)^2PCA baselines
+#   lbp          an LBP descriptor with no reducer
+#   lbp_reduced  an LBP descriptor followed by a reducer
+image_size:
+  raw: [300, 100]
+  lbp: [300, 100]
+  lbp_reduced: [100, 300]
+
+patch_size: 10
+stride: 10
+
+# Strength of the non-local-means denoiser applied before histogram equalisation.
+denoise_h: 10.0
+
+# The raw-pixel baselines on this dataset equalise without denoising.
+raw_denoise: false
+
+# Components kept by each reducer. `pca: null` keeps every eigenvector with a
+# non-negligible eigenvalue, as stated in Section 3.1 of the paper.
+n_components:
+  pca: null
+  2dpca: 137
+  2d2pca: 137
+
+normalise_descriptor: true
+normalise_features: true
+
+max_rank: 100
+chunk_size: 64

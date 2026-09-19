@@ -1,0 +1,40 @@
+# MMCBNU-6000 -- 100 subjects x 6 fingers x 10 captures = 6,000 ROIs.
+# The dataset ships pre-extracted ROIs of 128 x 60 px, so no ROI stage is needed.
+#
+# Point `data_root` at the directory that contains the numbered subject folders
+# (001/ ... 100/), each holding L_Fore/ L_Middle/ L_Ring/ R_Fore/ R_Middle/ R_Ring/.
+
+data_root: "data/MMCBNU_6000/ROIs"
+
+# Single-session collection: a genuine pair is any two samples of the same
+# identity, and no session constraint applies.
+evaluation: one-session
+
+# (height, width) the ROI is resized to, per feature family. The LBP families
+# use 120 columns, giving a 6 x 12 grid of non-overlapping 10 x 10 patches; the
+# raw-pixel baselines keep the native 128.
+image_size:
+  raw: [60, 128]
+  lbp: [60, 120]
+  lbp_reduced: [60, 120]
+
+patch_size: 10
+stride: 10
+
+denoise_h: 10.0
+
+# The raw-pixel baselines on this dataset equalise without denoising.
+raw_denoise: false
+
+# The patch grid is only 6 rows tall, so a request for more row components than
+# that is clipped to the number available.
+n_components:
+  pca: null
+  2dpca: 47
+  2d2pca: 47
+
+normalise_descriptor: true
+normalise_features: true
+
+max_rank: 100
+chunk_size: 64

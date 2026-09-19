@@ -1,0 +1,40 @@
+# UTFVP -- 60 subjects x 6 fingers x 4 captures = 1,440 images.
+# UTFVP ships no ROIs, so build them first:
+#
+#   python scripts/prepare_utfvp_roi.py --input <utfvp>/dataset/data --output data/UTFVP_ROI
+#   python scripts/augment_utfvp.py --input data/UTFVP_ROI --output data/UTFVP_ROI_augmented
+#
+# The augmentation step writes 3 variants per ROI next to the original, giving
+# 16 images per finger (5,760 in total), and `data_root` points at its output.
+
+data_root: "data/UTFVP_ROI_augmented"
+
+evaluation: one-session
+
+# (height, width) the ROI is resized to; every family on this dataset uses the
+# native ROI size. 60 x 128 gives a 6 x 12 grid of non-overlapping 10 x 10
+# patches, and the last 8 columns fall outside the grid.
+image_size:
+  raw: [60, 128]
+  lbp: [60, 128]
+  lbp_reduced: [60, 128]
+
+patch_size: 10
+stride: 10
+
+denoise_h: 10.0
+
+# The UTFVP raw-pixel baselines denoise before equalising, unlike the
+# FV-USM and MMCBNU-6000 ones, because their ROIs come from the augmented set.
+raw_denoise: true
+
+n_components:
+  pca: null
+  2dpca: 47
+  2d2pca: 47
+
+normalise_descriptor: true
+normalise_features: true
+
+max_rank: 100
+chunk_size: 64
