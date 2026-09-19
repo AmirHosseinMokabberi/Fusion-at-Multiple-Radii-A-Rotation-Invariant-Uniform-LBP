@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+title: >-
+  Multi-Radius Fused LBP for finger-vein identification (reference
+  implementation)
+message: >-
+  If you use this software, please cite both the software and the
+  article it accompanies.
+type: software
+authors:
+  - given-names: AmirHossein
+    family-names: Mokabberi
+    orcid: "https://orcid.org/0009-0002-4236-8893"
+    affiliation: >-
+      Department of Computer Engineering, Eastern Mediterranean University,
+      Famagusta, North Cyprus, via Mersin 10, Turkey
+  - given-names: Önsen
+    family-names: Toygar
+    orcid: "https://orcid.org/0000-0001-7402-9058"
+    affiliation: >-
+      Department of Computer Engineering, Eastern Mediterranean University,
+      Famagusta, North Cyprus, via Mersin 10, Turkey
+version: 1.0.0
+license: MIT
+keywords:
+  - finger vein identification
+  - biometrics
+  - local binary patterns
+  - feature extraction
+  - dimensionality reduction
+preferred-citation:
+  type: article
+  title: >-
+    Fusion at multiple radii: a rotation-invariant uniform LBP for finger-vein
+    identification
+  authors:
+    - given-names: AmirHossein
+      family-names: Mokabberi
+      orcid: "https://orcid.org/0009-0002-4236-8893"
+    - given-names: Önsen
+      family-names: Toygar
+      orcid: "https://orcid.org/0000-0001-7402-9058"
+  journal: Signal, Image and Video Processing
+  volume: 19
+  number: 1419
+  year: 2025
+  doi: 10.1007/s11760-025-05009-3
+  publisher:
+    name: Springer
+  notes: Article number 1419. Published online 5 December 2025.
